@@ -16,12 +16,13 @@ namespace KB_DAL
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public int Category_Id { get; set; }
         public System.DateTime PublishDate { get; set; }
         public string Tag { get; set; }
         public string Note { get; set; }
         public byte[] Attachment { get; set; }
-    
+
+        //One-too-many relationship
+        public int Category_Id { get; set; }
         public virtual Category Category { get; set; }
     }
 }
