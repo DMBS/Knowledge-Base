@@ -257,6 +257,7 @@
     <Content Include="Views\Post\ListofCategories.cshtml" />
     <Content Include="Views\Post\CreateCategory.cshtml" />
     <Content Include="Views\Post\CreateArticle.cshtml" />
+    <Content Include="Views\Post\GetFilterArticles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

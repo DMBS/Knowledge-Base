@@ -22,12 +22,13 @@ namespace KB_Web.Controllers
         }
 
         // List of Articles
-        public ActionResult ListofArticles()
+        public ActionResult ListofArticles(int? id)
         {
-            var DTOarticles = postService.GetArticlesWithCategoryName();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<DTOArticle, ArticleViewModels>()).CreateMapper();
-            var articleViewModel = mapper.Map<IEnumerable<DTOArticle>, List<ArticleViewModels>>(DTOarticles);
             
+            var result = id == null ? postService.GetArticlesWithCategoryName() : postService.GetFilterArticles(id);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<DTOArticle, ArticleViewModels>()).CreateMapper();
+            var articleViewModel = mapper.Map<IEnumerable<DTOArticle>, List<ArticleViewModels>>(result);
+
             return View(articleViewModel);
         }
 
@@ -83,6 +84,16 @@ namespace KB_Web.Controllers
             }
 
             return RedirectToAction("ListOfArticles", "Post");
+        }
+
+        //Get all articles selected category
+        public ActionResult GetFilterArticles (int id)
+        {
+            var gfa = postService.GetFilterArticles(id);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<DTOArticle, ArticleViewModels>()).CreateMapper();
+            var FilterArticlesViewModel = mapper.Map<IEnumerable<DTOArticle>, List<ArticleViewModels>>(gfa);
+
+            return View(FilterArticlesViewModel);
         }
     }
 }

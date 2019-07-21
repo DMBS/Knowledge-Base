@@ -87,5 +87,12 @@ namespace KB_BAL.Services
             var articlesWithCategoryName = mapper.Map<IEnumerable<Article>, List<DTOArticle>>(articleRepository.ArticlesWithCategoryName());
             return articlesWithCategoryName;
         }
+
+        public IEnumerable<DTOArticle> GetFilterArticles(int? categoryId)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Article, DTOArticle>()).CreateMapper();
+            var articlesWithCategoryName = mapper.Map<IEnumerable<Article>, List<DTOArticle>>(articleRepository.GetFilterArticles(categoryId));
+            return articlesWithCategoryName;
+        }
     }
 }
