@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<KB_Web.Models.ArticleViewModels>
 
 @{
-    ViewBag.Title = "ListofArticles";
+    ViewBag.Title = "GetFilterArticles";
 }
 
-<h2>List of Articles</h2>
+<h2>GetFilterArticles</h2>
 
 <p>
-    <input type="button" class="btn btn-success" value="Create new article" onclick="location.href='@Url.Action("CreateArticle", "Post")'" />
+    @Html.ActionLink("Create New", "Create")
 </p>
-
 <table class="table">
     <tr>
         <th>

@@ -35,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.ActionLink(Html.DisplayFor(modelItem => item.Name).ToHtmlString(), "ListOfArticles", new { id=item.Id })
             </td>
             <td>
                 @if (item.Badge != null)
