@@ -9,7 +9,6 @@ namespace KB_Web.Models
 {
     public class CategoryViewModels
     {
-        [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
         [Required]

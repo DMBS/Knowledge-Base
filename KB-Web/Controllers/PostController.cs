@@ -48,7 +48,7 @@ namespace KB_Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateCategory(CategoryViewModels category, HttpPostedFileBase badge)
+        public ActionResult CreateCategory([Bind(Exclude = "Badge")] CategoryViewModels category, HttpPostedFileBase badge)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +63,7 @@ namespace KB_Web.Controllers
                 postService.CreateCategoryDTO(DTOCategory);
             }
 
-            return View(category);
+            return RedirectToAction("ListOfCategories", "Post");
         }
     }
 }
