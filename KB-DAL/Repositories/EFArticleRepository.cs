@@ -1,5 +1,6 @@
 ﻿using KB_DAL.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -19,6 +20,38 @@ namespace KB_DAL.Repositories
                 return context.Articles;
             }
         }
+
+        public IEnumerable<Article> ArticlesWithCategoryName()
+        {
+            var query = from art in context.Articles
+                        join cat in context.Categories
+                        on art.Category_Id equals cat.Id
+                        select new
+                        {
+                            art.Id,
+                            art.Category_Id,
+                            art.Title,
+                            art.PublishDate,
+                            art.Tag,
+                            art.Note,
+                            cat
+                        };
+            var result = query.ToList()
+                .Select(e => new Article
+                {
+                    Id = e.Id,
+                    Category_Id = e.Category_Id,
+                    Title = e.Title,
+                    PublishDate = e.PublishDate,
+                    Tag = e.Tag,
+                    Note = e.Note,
+                    Category = e.cat
+                })
+                .ToList();
+
+            return result;
+        }
+
         /// <summary>
         /// Create article with save in DB
         /// </summary>

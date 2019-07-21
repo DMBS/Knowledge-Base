@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using KB_DAL;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace KB_Web.Models
 {
@@ -14,6 +16,7 @@ namespace KB_Web.Models
         /// Date of Publishing
         /// </summary>
         [Required]
+        [DataType(DataType.Date)]
         public System.DateTime PublishDate { get; set; }
         /// <summary>
         /// Hastag
@@ -23,6 +26,7 @@ namespace KB_Web.Models
         /// Article Note
         /// </summary>
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Note { get; set; }
         /// <summary>
         /// Article attachments
@@ -31,6 +35,7 @@ namespace KB_Web.Models
 
         // one-too-many relationship
         public int Category_Id { get; set; }
-        public virtual CategoryViewModels CategoryViewmodels { get; set; }
+        [Display(Name = "Submitted By")]
+        public virtual Category Category { get; set; }
     }
 }

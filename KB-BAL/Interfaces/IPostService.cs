@@ -6,6 +6,7 @@ namespace KB_BAL.Interfaces
     public interface IPostService
     {
         IEnumerable<DTOArticle> GetArticles();
+        IEnumerable<DTOArticle> GetArticlesWithCategoryName();
         IEnumerable<DTOCategory> GetCategories();
         void CreateCategoryDTO(DTOCategory dtoaddcategory);
         void DeleteCategoryDTO(int categoryId);

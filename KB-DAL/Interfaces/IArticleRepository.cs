@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace KB_DAL.Interfaces
 {
@@ -8,6 +9,7 @@ namespace KB_DAL.Interfaces
     public interface IArticleRepository
     {
         IQueryable<Article> Articles { get; }
+        IEnumerable<Article> ArticlesWithCategoryName();
         void CreateArticle(Article article);
         void EditArticle(Article article);
         void DeleteArticle(int articleId);

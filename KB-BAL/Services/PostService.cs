@@ -80,5 +80,12 @@ namespace KB_BAL.Services
             var categories = mapper.Map<IEnumerable<Category>, List<DTOCategory>>(categoryRepository.Categories);
             return categories;
         }
+
+        public IEnumerable<DTOArticle> GetArticlesWithCategoryName()
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Article, DTOArticle>()).CreateMapper();
+            var articlesWithCategoryName = mapper.Map<IEnumerable<Article>, List<DTOArticle>>(articleRepository.ArticlesWithCategoryName());
+            return articlesWithCategoryName;
+        }
     }
 }

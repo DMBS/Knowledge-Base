@@ -24,7 +24,7 @@ namespace KB_Web.Controllers
         // List of Articles
         public ActionResult ListofArticles()
         {
-            var DTOarticles = postService.GetArticles();
+            var DTOarticles = postService.GetArticlesWithCategoryName();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<DTOArticle, ArticleViewModels>()).CreateMapper();
             var articleViewModel = mapper.Map<IEnumerable<DTOArticle>, List<ArticleViewModels>>(DTOarticles);
             
@@ -64,6 +64,25 @@ namespace KB_Web.Controllers
             }
 
             return RedirectToAction("ListOfCategories", "Post");
+        }
+
+        public ActionResult CreateArticle()
+        {
+            ViewBag.CategoryNames = new SelectList(postService.GetCategories(), "Id", "Name");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateArticle(ArticleViewModels article)
+        {
+            if (ModelState.IsValid)
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ArticleViewModels, DTOArticle>()).CreateMapper();
+                var DTOArticle = mapper.Map<ArticleViewModels, DTOArticle>(article);
+                postService.CreateArticleDTO(DTOArticle);
+            }
+
+            return RedirectToAction("ListOfArticles", "Post");
         }
     }
 }
