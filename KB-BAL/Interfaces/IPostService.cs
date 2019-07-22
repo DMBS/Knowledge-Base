@@ -9,6 +9,7 @@ namespace KB_BAL.Interfaces
         IEnumerable<DTOArticle> GetArticlesWithCategoryName();
         IEnumerable<DTOCategory> GetCategories();
         IEnumerable<DTOArticle> GetFilterArticles(int? categoryId);
+        DTOArticle GetArticleDetails(int? articleId);
         void CreateCategoryDTO(DTOCategory dtoaddcategory);
         void DeleteCategoryDTO(int categoryId);
         void CreateArticleDTO(DTOArticle dtoaddarticle);

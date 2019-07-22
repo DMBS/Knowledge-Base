@@ -23,6 +23,7 @@ namespace KB_Web.Controllers
 
         // List of Articles
         public ActionResult ListofArticles(int? id)
+
         {
             
             var result = id == null ? postService.GetArticlesWithCategoryName() : postService.GetFilterArticles(id);
@@ -86,14 +87,13 @@ namespace KB_Web.Controllers
             return RedirectToAction("ListOfArticles", "Post");
         }
 
-        //Get all articles selected category
-        public ActionResult GetFilterArticles (int id)
+        public ActionResult ArticleDetails (int? id)
         {
-            var gfa = postService.GetFilterArticles(id);
+            var DTOArticleDetails = postService.GetArticleDetails(id);
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<DTOArticle, ArticleViewModels>()).CreateMapper();
-            var FilterArticlesViewModel = mapper.Map<IEnumerable<DTOArticle>, List<ArticleViewModels>>(gfa);
+            var articleDetailsViewModel = mapper.Map<DTOArticle,ArticleViewModels>(DTOArticleDetails);
 
-            return View(FilterArticlesViewModel);
+            return View(articleDetailsViewModel);
         }
     }
 }

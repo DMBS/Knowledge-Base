@@ -104,6 +104,14 @@ namespace KB_DAL.Repositories
             }
             context.SaveChanges();
         }
+
+        public Article ArticleDetails (int? articleId)
+        {
+            var article = context.Articles.Find(articleId);
+
+            return article;
+        }
+
         /// <summary>
         /// Edit article with save in DB
         /// </summary>

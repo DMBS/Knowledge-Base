@@ -11,19 +11,21 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+            
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Knowledge Base", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-left" style="margin: 0; text-align:center" href="#"><img src="@Url.Content("~/Content/Image/BrandImage/profile_pic.jpg")" class="img-circle" height="32px" width="32px" /></a>
+                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Categories", "ListOfCategories", "Post")</li>
-                    <li>@Html.ActionLink("Articles", "ListOfArticles", "Post")</li>
-                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    <li>@Html.ActionLink("Articles", "ListOfArticles", "Post", new { id = (int?)null }, null)</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
