@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using KB_BAL.DTO_Model;
+using KB_BAL.Interfaces;
+using KB_Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +12,20 @@ namespace KB_Web.Controllers
 {
     public class HomeController : Controller
     {
+        private IPostService postservice;
+
+        public HomeController (IPostService serv)
+        {
+            postservice = serv;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var DTOArticles = postservice.GetArticles();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<DTOArticle, ArticleViewModels>()).CreateMapper();
+            var articleViewModel = mapper.Map<IEnumerable<DTOArticle>, IEnumerable<ArticleViewModels>>(DTOArticles);
+
+            return View(articleViewModel);
         }
 
         public ActionResult About()

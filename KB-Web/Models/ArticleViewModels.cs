@@ -1,11 +1,15 @@
 ﻿using KB_DAL;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace KB_Web.Models
 {
     public class ArticleViewModels
     {
+        [HiddenInput(DisplayValue = false)]
+        public int Id { get; set; }
+
         /// <summary>
         /// Title of Article
         /// </summary>

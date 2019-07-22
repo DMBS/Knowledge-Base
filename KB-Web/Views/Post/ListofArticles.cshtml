@@ -4,7 +4,7 @@
     ViewBag.Title = "ListofArticles";
 }
 
-<h2>List of Articles</h2>
+<h3>List of Articles</h3>
 
 <p>
     <input type="button" class="btn btn-success" value="Create new article" onclick="location.href='@Url.Action("CreateArticle", "Post")'" />
@@ -33,7 +33,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.ActionLink(Html.DisplayFor(modelItem => item.Title).ToHtmlString(), "ArticleDetails", new { id = item.Id })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PublishDate)
