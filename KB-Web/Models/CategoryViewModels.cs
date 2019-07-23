@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace KB_Web.Models
 {
-    public class CategoryViewModels
+    public partial class CategoryViewModels
     {
         public int Id { get; set; }
 

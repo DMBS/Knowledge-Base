@@ -10,10 +10,11 @@ namespace KB_BAL.Interfaces
         IEnumerable<DTOCategory> GetCategories();
         IEnumerable<DTOArticle> GetFilterArticles(int? categoryId);
         DTOArticle GetArticleDetails(int? articleId);
+        IEnumerable<DTOCategory> GetCountOfArticlesInCategory();
         void CreateCategoryDTO(DTOCategory dtoaddcategory);
         void DeleteCategoryDTO(int categoryId);
         void CreateArticleDTO(DTOArticle dtoaddarticle);
         void EditArticleDTO(DTOArticle dtoeditarticle);
-        void DeleteArticleDTO(int dtodelarticle);
+        void DeleteArticleDTO(int? dtodelarticle);
     }
 }

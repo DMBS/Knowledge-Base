@@ -13,13 +13,19 @@
         <div class="container">
             
             <div class="navbar-header">
+
+                <a class="navbar-brand">
+                    <img id="logo" alt="Logo" src="~/Content/Image/BrandImage/profile_pic.jpg" width="32" height="32">
+                </a>
+
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-left" style="margin: 0; text-align:center" href="#"><img src="@Url.Content("~/Content/Image/BrandImage/profile_pic.jpg")" class="img-circle" height="32px" width="32px" /></a>
-                
+
+                @Html.ActionLink("Knowledge Base", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

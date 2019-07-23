@@ -14,6 +14,6 @@ namespace KB_DAL.Interfaces
         Article ArticleDetails(int? articleId);
         void CreateArticle(Article article);
         void EditArticle(Article article);
-        void DeleteArticle(int articleId);
+        void DeleteArticle(int? articleId);
     }
 }

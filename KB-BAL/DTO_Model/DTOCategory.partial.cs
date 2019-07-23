@@ -7,8 +7,6 @@ namespace KB_BAL.DTO_Model
 {
     public partial class DTOCategory
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public byte[] Badge { get; set; }
+        public int ArticlesCount { get; set; }
     }
 }
