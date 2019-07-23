@@ -36,12 +36,13 @@ namespace KB_Web.Controllers
         //List of Categories
         public ActionResult ListofCategories()
         {
-            var DTOcategories = postService.GetCategories();
+            var DTOcategories = postService.GetCountOfArticlesInCategory();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<DTOCategory, CategoryViewModels>()).CreateMapper();
             var categoriesViewModel = mapper.Map<IEnumerable<DTOCategory>, List<CategoryViewModels>>(DTOcategories);
 
             return View(categoriesViewModel);
         }
+
 
         //Create Category
         public ActionResult CreateCategory()
@@ -94,6 +95,13 @@ namespace KB_Web.Controllers
             var articleDetailsViewModel = mapper.Map<DTOArticle,ArticleViewModels>(DTOArticleDetails);
 
             return View(articleDetailsViewModel);
+        }
+
+        public ActionResult DeleteArticle (int? id)
+        {
+            postService.DeleteArticleDTO(id);
+            return RedirectToAction("ListOfArticles");
+
         }
     }
 }

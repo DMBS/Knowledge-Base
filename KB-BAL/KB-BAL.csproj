@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="DTO_Model\DTOArticle.cs" />
     <Compile Include="DTO_Model\DTOCategory.cs" />
+    <Compile Include="DTO_Model\DTOCategory.partial.cs" />
     <Compile Include="Interfaces\IPostService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PostService.cs" />

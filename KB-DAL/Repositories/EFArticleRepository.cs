@@ -132,7 +132,7 @@ namespace KB_DAL.Repositories
         /// Delete article with save in DB
         /// </summary>
         /// <param name="articleId"></param>
-        public void DeleteArticle (int articleId)
+        public void DeleteArticle (int? articleId)
         {
             var article = context.Articles.FirstOrDefault(x => x.Id == articleId);
             context.Articles.Remove(article ?? throw new InvalidOperationException());

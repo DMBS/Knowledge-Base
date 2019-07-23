@@ -62,7 +62,7 @@ namespace KB_BAL.Services
             }
                 );
         }
-        public void DeleteArticleDTO(int dtodelarticle)
+        public void DeleteArticleDTO(int? dtodelarticle)
         {
             articleRepository.DeleteArticle(dtodelarticle);
         }
@@ -100,6 +100,15 @@ namespace KB_BAL.Services
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Article, DTOArticle>()).CreateMapper();
             var DTOarticleDetails = mapper.Map<Article, DTOArticle>(articleRepository.ArticleDetails(articleId));
             return DTOarticleDetails;
+        }
+
+        public IEnumerable<DTOCategory> GetCountOfArticlesInCategory()
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Category, DTOCategory>()).CreateMapper();
+            var DTOCountOfArticlesInCategory = mapper.Map<IEnumerable<Category>, IEnumerable<DTOCategory>>(categoryRepository.CountOfArticlesInCategory());
+
+            return DTOCountOfArticlesInCategory;
+
         }
     }
 }
