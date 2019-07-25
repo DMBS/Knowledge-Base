@@ -34,7 +34,7 @@ namespace KB_BAL.Services
         {
             categoryRepository.DeleteCategory(categoryid);
         }
-        public void CreateArticleDTO (DTOArticle dtoaddarticle)
+        public void CreateArticleDTO(DTOArticle dtoaddarticle)
         {
             articleRepository.CreateArticle(new Article
             {
@@ -74,7 +74,7 @@ namespace KB_BAL.Services
             return articles;
         }
 
-        public IEnumerable<DTOCategory> GetCategories ()
+        public IEnumerable<DTOCategory> GetCategories()
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Category, DTOCategory>()).CreateMapper();
             var categories = mapper.Map<IEnumerable<Category>, List<DTOCategory>>(categoryRepository.Categories);
@@ -95,7 +95,7 @@ namespace KB_BAL.Services
             return articlesWithCategoryName;
         }
 
-        public DTOArticle GetArticleDetails (int? articleId)
+        public DTOArticle GetArticleDetails(int? articleId)
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Article, DTOArticle>()).CreateMapper();
             var DTOarticleDetails = mapper.Map<Article, DTOArticle>(articleRepository.ArticleDetails(articleId));
@@ -109,6 +109,13 @@ namespace KB_BAL.Services
 
             return DTOCountOfArticlesInCategory;
 
+        }
+
+        public DTOArticle GetArticleById(int? articleId)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Article, DTOArticle>()).CreateMapper();
+            var DTOarticle = mapper.Map<Article, DTOArticle>(articleRepository.FindArticleById(articleId));
+            return DTOarticle;
         }
     }
 }

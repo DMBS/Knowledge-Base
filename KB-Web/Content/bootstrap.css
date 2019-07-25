@@ -198,6 +198,17 @@ th {
     margin-bottom: -8px
 }
 
+.circle {
+    background: red;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    width: 32px;
+    display: table;
+    text-align:center;
+}
+
+
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
   *,
@@ -259,12 +270,15 @@ th {
   .label {
     border: 1px solid #000;
   }
-  .table {
-    border-collapse: collapse !important;
-  }
+    .table {
+        border-collapse: collapse !important;
+        width: 50%;
+        margin: 0 auto !important;
+    }
   .table td,
   .table th {
     background-color: #fff !important;
+    text-align:center;
   }
   .table-bordered th,
   .table-bordered td {

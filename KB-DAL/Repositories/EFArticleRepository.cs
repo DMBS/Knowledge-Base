@@ -138,5 +138,17 @@ namespace KB_DAL.Repositories
             context.Articles.Remove(article ?? throw new InvalidOperationException());
             context.SaveChanges();
         }
+
+        public Article FindArticleById (int? articleId)
+        {
+            var article = context.Articles.Find(articleId);
+
+            if (article == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            return article;
+        }
     }
 }

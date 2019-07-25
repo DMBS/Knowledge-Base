@@ -21,6 +21,10 @@ namespace KB_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Count number of articles in each category
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Category> CountOfArticlesInCategory()
         {
             var query = from c in context.Categories
@@ -50,34 +54,6 @@ namespace KB_DAL.Repositories
             }).ToList();
              
             return result ;
-
-            //var query = from c in context.Categories
-            //            join a in context.Articles
-            //            on c.Id equals a.Id
-            //            group c by a.Category_Id into g
-            //            select new Category
-            //            {
-            //                Id = g.Select(x => x.Id).ToList(),
-            //                Name = g.Select(x => x.Name).ToList(), 
-            //                Badge = g.Select(x => x.Badge).ToList(),
-            //            }
-            //var query = context
-            //    .Database
-            //    .SqlQuery<PostEntity>(
-            //    "SELECT COUNT(a.Category_Id) AS ArticlesCount FROM Categories c LEFT JOIN Articles a ON c.id = a.Category_Id GROUP BY c.Id, c.[Name], c.Badge ORDER BY c.[Id]")
-            //    .ToList();
-
-            //var result = query.ToList()
-            //    .Select(e => new PostEntity
-            //    {
-            //        Categories.Id = e.Categories,
-            //        Name = e.Name,
-            //        Badge = e.Badge,
-            //        ArticlesCount = e.ArticlesCount
-            //    })
-            //    .ToList();
-
-            //return rt;
         }
 
         /// <summary>

@@ -103,5 +103,34 @@ namespace KB_Web.Controllers
             return RedirectToAction("ListOfArticles");
 
         }
+
+        public ActionResult EditArticle (int? id)
+        {
+            var article = postService.GetArticleById(id);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<DTOArticle, ArticleViewModels>()).CreateMapper();
+            var articleEditViewModel = mapper.Map<DTOArticle, ArticleViewModels>(article);
+
+            if (articleEditViewModel == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.CategoryNames = new SelectList(postService.GetCategories(), "Id", "Name");
+
+            return View(articleEditViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditArticle (ArticleViewModels article)
+        {
+            if (ModelState.IsValid)
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ArticleViewModels, DTOArticle>()).CreateMapper();
+                var DTOArticle = mapper.Map<ArticleViewModels, DTOArticle>(article);
+                postService.EditArticleDTO(DTOArticle);
+            }
+
+            return RedirectToAction("ListOfArticles", "Post");
+        }
     }
 }
