@@ -20,6 +20,7 @@ namespace KB_Web.Models
         /// Date of Publishing
         /// </summary>
         [Required]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public System.DateTime PublishDate { get; set; }
         /// <summary>
