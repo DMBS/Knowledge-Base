@@ -2,6 +2,7 @@
 using KB_BAL.DTO_Model;
 using KB_BAL.Interfaces;
 using KB_Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
@@ -25,7 +26,8 @@ namespace KB_Web.Controllers
         public ActionResult ListofArticles(int? id)
 
         {
-            
+            ViewBag.CategoryNames = new SelectList(postService.GetCategories(), "Id", "Name");
+
             var result = id == null ? postService.GetArticlesWithCategoryName() : postService.GetFilterArticles(id);
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<DTOArticle, ArticleViewModels>()).CreateMapper();
             var articleViewModel = mapper.Map<IEnumerable<DTOArticle>, List<ArticleViewModels>>(result);
@@ -71,13 +73,21 @@ namespace KB_Web.Controllers
 
         public ActionResult CreateArticle()
         {
-            ViewBag.CategoryNames = new SelectList(postService.GetCategories(), "Id", "Name");
             return View();
         }
 
         [HttpPost]
-        public ActionResult CreateArticle(ArticleViewModels article)
+        public ActionResult CreateArticle(string title, DateTime publishdate, string tag, string note, int category)
         {
+            ArticleViewModels article = new ArticleViewModels()
+            {
+                Title = title,
+                PublishDate = publishdate,
+                Tag = tag,
+                Note = note,
+                Category_Id = category
+            };
+
             if (ModelState.IsValid)
             {
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ArticleViewModels, DTOArticle>()).CreateMapper();
@@ -101,7 +111,20 @@ namespace KB_Web.Controllers
         {
             postService.DeleteArticleDTO(id);
             return RedirectToAction("ListOfArticles");
+        }
 
+        [HttpPost]
+        public ActionResult DeleteArticle(FormCollection articlesArrayIds)
+        {
+            var values = articlesArrayIds["articlesArray"];
+            string[] articlesStringArray = values.Split(',');
+
+            for(int i=0; i < articlesStringArray.Length; i++)
+            {
+                postService.DeleteArticleDTO(Int32.Parse(articlesStringArray[i]));
+            }
+
+            return RedirectToAction("ListOfArticles");
         }
 
         public ActionResult EditArticle (int? id)
