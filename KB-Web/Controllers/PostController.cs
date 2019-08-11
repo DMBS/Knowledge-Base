@@ -110,7 +110,7 @@ namespace KB_Web.Controllers
         public ActionResult DeleteArticle (int? id)
         {
             postService.DeleteArticleDTO(id);
-            return RedirectToAction("ListOfArticles");
+            return RedirectToAction("ListOfArticles", "Post");
         }
 
         [HttpPost]
@@ -127,20 +127,20 @@ namespace KB_Web.Controllers
             return RedirectToAction("ListOfArticles");
         }
 
-        public ActionResult EditArticle (int? id)
+        public JsonResult EditArticle (int? id)
         {
             var article = postService.GetArticleById(id);
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<DTOArticle, ArticleViewModels>()).CreateMapper();
             var articleEditViewModel = mapper.Map<DTOArticle, ArticleViewModels>(article);
 
-            if (articleEditViewModel == null)
-            {
-                return HttpNotFound();
-            }
+            //if (articleEditViewModel == null)
+            //{
+            //    return HttpNotFound();
+            //}
 
             ViewBag.CategoryNames = new SelectList(postService.GetCategories(), "Id", "Name");
 
-            return View(articleEditViewModel);
+            return Json(articleEditViewModel, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
