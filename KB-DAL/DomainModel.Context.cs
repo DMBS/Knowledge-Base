@@ -18,6 +18,7 @@ namespace KB_DAL
         public KBEntities()
             : base("name=KBEntities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
